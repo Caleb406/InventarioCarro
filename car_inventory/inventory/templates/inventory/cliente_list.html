@@ -14,6 +14,34 @@
         </div>
     </div>
 
+ <!-- Formulario de búsqueda y filtros -->
+ <div class="card mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-3">
+            <div class="col-md-8">
+                <label class="form-label">Buscar</label>
+                <input type="text" name="search" class="form-control" value="{{ search_query }}" placeholder="Nombre, apellido, email o teléfono...">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">Estado</label>
+                <select name="activo" class="form-select">
+                    <option value="">Todos</option>
+                    <option value="true" {% if activo == 'true' %}selected{% endif %}>Activo</option>
+                    <option value="false" {% if activo == 'false' %}selected{% endif %}>Inactivo</option>
+                </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary me-2">Filtrar</button>
+                <a href="{% url 'cliente_list' %}" class="btn btn-secondary">Limpiar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
     {% if clientes %}
     <div class="table-responsive">
         <table class="table table-striped table-hover">
