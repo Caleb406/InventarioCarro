@@ -1,7 +1,9 @@
 from django.urls import path
 from .views import (
     CarListView, CarCreateView, CarUpdateView, CarDeleteView,
-    ClienteListView, ClienteCreateView, ClienteUpdateView, ClienteDeleteView
+    ClienteListView, ClienteCreateView, ClienteUpdateView, ClienteDeleteView,
+    export_cars_excel, export_cars_pdf
+
 )
 
 urlpatterns = [
@@ -16,6 +18,8 @@ urlpatterns = [
     
     # Confirmación para eliminar un carro
     path('eliminar/<int:pk>/', CarDeleteView.as_view(), name='car_delete'),
+    path('cars/export/excel/', export_cars_excel, name='export_cars_excel'),
+    path('cars/export/pdf/', export_cars_pdf, name='export_cars_pdf'),
     
     # URLs de Clientes
     path('clientes/', ClienteListView.as_view(), name='cliente_list'),

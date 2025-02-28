@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Inventario de Carros</title>
+    <style>
+        @page {
+            size: letter landscape;
+            margin: 2cm;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+        .table th, .table td {
+            padding: 8px;
+            border: 1px solid #dee2e6;
+            text-align: left;
+        }
+        .table th {
+            background-color: #343a40;
+            color: white;
+        }
+        .table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inventario de Carros</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Año</th>
+                <th>Precio</th>
+                <th>Color</th>
+                <th>Kilometraje</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+            <tr>
+                <td>{{ car.cliente|default:"Sin asignar" }}</td>
+                <td>{{ car.marca }}</td>
+                <td>{{ car.modelo }}</td>
+                <td>{{ car.año }}</td>
+                <td>${{ car.precio|floatformat:2 }}</td>
+                <td>{{ car.color }}</td>
+                <td>{{ car.kilometraje }} km</td>
+                <td>{% if car.disponible %}Disponible{% else %}No Disponible{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
